@@ -59,17 +59,14 @@ items:
                 barLength: 1
             - 
               id: 4
-              name: "BodyRTC"
-              plugin: OpenRTM
-              class: BodyRTCItem
+              name: "SimpleController"
+              plugin: SimpleController
+              class: SimpleControllerItem
               data: 
                 isImmediateMode: true
-                moduleName: "JVRCWalkControllerRTC"
-                confFileName: ""
-                configurationMode: Create Default Port
-                AutoConnect: false
-                InstanceName: JVRC
-                bodyPeriodicRate: 0
+                controller: "controller/RobotController"
+                reloading: true
+                inputLinkPositions: false
         - 
           id: 5
           name: "Floor"
@@ -105,9 +102,9 @@ views:
     class: ItemTreeView
     mounted: true
     state: 
-      selected: [ 3 ]
-      checked: [ 2, 3, 5 ]
-      expanded: [ 1, 2, 3 ]
+      selected: [ 4 ]
+      checked: [ 2, 5 ]
+      expanded: [ 1, 2 ]
   - 
     id: 2
     plugin: Base
@@ -151,7 +148,7 @@ views:
         current: Perspective
         eye: [ 3.9230532, 0.00317236382, 0.960286253 ]
         direction: [ -0.998925023, 0.0463357414, -0.0013410164 ]
-        up: [ -0.00133957604, 6.21370452e-05, 0.999999101 ]
+        up: [ -0.00133957604, 6.21370453e-05, 0.999999101 ]
         fieldOfView: 0.6978
         near: 0.01
         far: 100
@@ -190,10 +187,6 @@ views:
     state: 
       listingMode: "Link List"
       currentBodyItem: 2
-      bodyItems: 
-        - 
-          id: 2
-          selectedLinks: [ 22 ]
   - 
     id: 7
     name: "Pose Roll"
