@@ -57,10 +57,10 @@ linkGroup:
                ]
 
 footLinks:
-  - link: L_ANKLE_R
-    soleCenter: [ 0.05, 0.0, -0.055 ]
-  - link: R_ANKLE_R
-    soleCenter: [ 0.05, 0.0, -0.055 ]
+  - link: R_ANKLE_P
+    soleCenter: [ 0.0, 0.0, -0.055 ]
+  - link: L_ANKLE_P
+    soleCenter: [ 0.0, 0.0, -0.055 ]
 
 defaultIKsetup:
 
