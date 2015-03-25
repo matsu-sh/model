@@ -1,31 +1,31 @@
 items: 
-  id: 7
+  id: 28
   name: "Root"
   plugin: Base
   class: RootItem
   children: 
     - 
-      id: 8
+      id: 29
       name: "World"
       plugin: Body
       class: WorldItem
       data: 
-        collisionDetection: true
+        collisionDetection: false
         collisionDetector: AISTCollisionDetector
       children: 
         - 
-          id: 9
+          id: 30
           name: "JVRC"
           plugin: Body
           class: BodyItem
           data: 
-            modelFile: "robot.yaml"
-            currentBaseLink: "R_ANKLE_P"
-            rootPosition: [ -2.61928626e-07, -9.54683788e-09, 0.853636039 ]
+            modelFile: "../robot.yaml"
+            currentBaseLink: "PELVIS"
+            rootPosition: [ 0, 0, 0.854 ]
             rootAttitude: [ 
-              1, -2.16255225e-06, -6.17603119e-08, 
-              2.16255225e-06, 1, 1.62237354e-08, 
-              6.17602768e-08, -1.62238689e-08, 1 ]
+              1, 0, 0, 
+              0, 1, 0, 
+              0, 0, 1 ]
             jointPositions: [ 
                0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000, 
                0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000, 
@@ -43,13 +43,26 @@ items:
                0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000, 
                0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000, 
                0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000 ]
-            zmp: [ 0, 0, 0 ]
+            zmp: [ 3.97163325e-316, 2.00590652e-321, 3.97163484e-316 ]
             collisionDetection: true
             selfCollisionDetection: false
             isEditable: true
           children: 
             - 
-              id: 10
+              id: 31
+              name: "BodyRTC"
+              plugin: OpenRTM
+              class: BodyRTCItem
+              data: 
+                isImmediateMode: true
+                moduleName: "RobotTorqueControllerRTC"
+                confFileName: ""
+                configurationMode: Create Default Port
+                AutoConnect: true
+                InstanceName: JVRC
+                bodyPeriodicRate: 0
+            - 
+              id: 32
               name: "SampleMotion"
               plugin: PoseSeq
               class: PoseSeqItem
@@ -57,18 +70,8 @@ items:
                 filename: "SampleMotion.pseq"
                 format: POSE-SEQ-YAML
                 barLength: 1
-            - 
-              id: 11
-              name: "SimpleController"
-              plugin: SimpleController
-              class: SimpleControllerItem
-              data: 
-                isImmediateMode: true
-                controller: "controller/RobotController"
-                reloading: true
-                inputLinkPositions: false
         - 
-          id: 12
+          id: 33
           name: "Floor"
           plugin: Body
           class: BodyItem
@@ -91,7 +94,7 @@ items:
             selfCollisionDetection: false
             isEditable: true
         - 
-          id: 13
+          id: 34
           name: "AISTSimulator"
           plugin: Body
           class: AISTSimulatorItem
@@ -119,32 +122,38 @@ items:
 views: 
   - 
     id: 0
+    name: "CameraImage"
     plugin: Base
-    class: ItemPropertyView
+    class: ImageView
     mounted: true
   - 
     id: 1
     plugin: Base
+    class: ItemPropertyView
+    mounted: true
+  - 
+    id: 2
+    plugin: Base
     class: ItemTreeView
     mounted: true
     state: 
-      selected: [ 8, 13 ]
-      checked: [ 9, 12 ]
-      expanded: [ 8, 9, [ 10, "motion" ] ]
+      selected: [ [ 32, "motion" ] ]
+      checked: [ 30, 33 ]
+      expanded: [ 29, 30, 31, 32, [ 32, "motion" ] ]
   - 
-    id: 2
+    id: 3
     plugin: Base
     class: MessageView
     mounted: true
   - 
-    id: 3
+    id: 4
     plugin: Base
     class: SceneView
     mounted: true
     state: 
       editMode: true
       viewpointControlMode: thirdPerson
-      collisionLines: true
+      collisionLines: false
       polygonMode: fill
       defaultHeadLight: true
       defaultHeadLightIntensity: 0.75
@@ -172,9 +181,9 @@ views:
       useBufferForPicking: true
       camera: 
         current: Perspective
-        eye: [ 3.9230532, 0.00317236382, 0.960286253 ]
-        direction: [ -0.998925023, 0.0463357414, -0.0013410164 ]
-        up: [ -0.00133957604, 6.21370454e-05, 0.999999101 ]
+        eye: [ 4.56351343, 0.153609331, 1.18353259 ]
+        direction: [ -0.998580038, -0.0336125255, -0.0413292411 ]
+        up: [ -0.0413058476, -0.00139036813, 0.999145582 ]
         fieldOfView: 0.6978
         near: 0.01
         far: 100
@@ -185,14 +194,14 @@ views:
       yzgridColor: [ 0.899999976, 0.899999976, 0.899999976, 1 ]
       dedicatedItemTreeViewChecks: false
   - 
-    id: 4
+    id: 5
     plugin: Body
     class: BodyLinkView
     mounted: true
     state: 
       showRotationMatrix: false
   - 
-    id: 5
+    id: 6
     plugin: Body
     class: JointSliderView
     mounted: true
@@ -204,44 +213,48 @@ views:
       spinBox: true
       slider: true
       labelOnLeft: true
-      currentBodyItem: 9
+      currentBodyItem: 30
   - 
-    id: 6
+    id: 7
     plugin: Body
     class: LinkSelectionView
     mounted: true
     state: 
       listingMode: "Link List"
-      currentBodyItem: 9
+      currentBodyItem: 30
   - 
-    id: 7
+    id: 8
     name: "Pose Roll"
     plugin: PoseSeq
     class: PoseRollView
     mounted: true
     state: 
-      currentPoseSeqItem: 10
+      currentPoseSeqItem: 32
       defaultTransitionTime: 0
       updateAll: true
       autoUpdate: false
       timeSync: true
       listingMode: "Part Tree"
+      bodyItems: 
+        - 
+          id: 30
+          expandedParts: [ "Whole Body" ]
       timeLength: 10
       showLipSync: false
       gridInterval: 1
   - 
-    id: 8
+    id: 9
     plugin: Python
     class: PythonConsoleView
     mounted: true
 toolbars: 
   "TimeBar": 
     minTime: 0
-    maxTime: 61.89
+    maxTime: 30
     frameRate: 100
     playbackFrameRate: 50
     idleLoopDrivenMode: false
-    currentTime: 29.44
+    currentTime: 0
     speedScale: 1
     syncToOngoingUpdates: true
     autoExpansion: true
@@ -249,12 +262,12 @@ toolbars:
     mode: AUTO
     enablePositionDragger: true
     penetrationBlock: false
-    collisionLinkHighlight: true
+    collisionLinkHighlight: false
     snapDistance: 0.025
     penetrationBlockDepth: 0.0005
     lazyCollisionDetectionMode: true
   "BodyBar": 
-    current: 9
+    current: 30
   "LeggedBodyBar": 
     stanceWidth: 0.15
   "BodyMotionGenerationBar": 
@@ -295,12 +308,12 @@ Body:
   "EditableSceneBody": 
     editableSceneBodies: 
       - 
-        bodyItem: 9
+        bodyItem: 30
         showCenterOfMass: false
         showPpcom: false
         showZmp: true
       - 
-        bodyItem: 12
+        bodyItem: 33
         showCenterOfMass: false
         showPpcom: false
         showZmp: false

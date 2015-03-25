@@ -1,37 +1,37 @@
 items: 
-  id: 7
+  id: 0
   name: "Root"
   plugin: Base
   class: RootItem
   children: 
     - 
-      id: 8
+      id: 1
       name: "World"
       plugin: Body
       class: WorldItem
       data: 
-        collisionDetection: true
+        collisionDetection: false
         collisionDetector: AISTCollisionDetector
       children: 
         - 
-          id: 9
+          id: 2
           name: "JVRC"
           plugin: Body
           class: BodyItem
           data: 
-            modelFile: "robot.yaml"
-            currentBaseLink: "R_ANKLE_P"
-            rootPosition: [ -2.61928626e-07, -9.54683788e-09, 0.853636039 ]
+            modelFile: "../robot.yaml"
+            currentBaseLink: "PELVIS"
+            rootPosition: [ 0.0413963414, 0.000181616704, 0.0940333385 ]
             rootAttitude: [ 
-              1, -2.16255225e-06, -6.17603119e-08, 
-              2.16255225e-06, 1, 1.62237354e-08, 
-              6.17602768e-08, -1.62238689e-08, 1 ]
+              0.565424005, -0.0125139822, -0.824705459, 
+              0.0058130155, 0.999920524, -0.0111872294, 
+              0.824779912, 0.00153150244, 0.565451812 ]
             jointPositions: [ 
-               0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000, 
-               0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000, 
-               0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000, 
-               0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000, 
-               0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000 ]
+               2.491536,  0.014273, -0.003464, -3.041826,  0.504564,  1.360445,  2.490455,  0.031264, -0.002901, 
+              -3.045891, -0.501021,  1.310491,  0.017990,  2.878274, -0.003599,  0.019525,  0.017707,  2.996885, 
+              -0.520872, -0.761651,  1.508038, -2.182746,  0.264640, -2.990384,  0.465690,  3.099607, -0.005098, 
+               2.411791,  0.686546,  2.999907, -1.986456, -0.492282,  0.674486, -1.506559, -2.242052, -1.251595, 
+               2.269450, -2.690822, -2.487268,  1.217938, -2.993205,  0.327215, -1.484359, -0.531348 ]
             initialRootPosition: [ 0, 0, 0.854 ]
             initialRootAttitude: [ 
               1, 0, 0, 
@@ -47,28 +47,8 @@ items:
             collisionDetection: true
             selfCollisionDetection: false
             isEditable: true
-          children: 
-            - 
-              id: 10
-              name: "SampleMotion"
-              plugin: PoseSeq
-              class: PoseSeqItem
-              data: 
-                filename: "SampleMotion.pseq"
-                format: POSE-SEQ-YAML
-                barLength: 1
-            - 
-              id: 11
-              name: "SimpleController"
-              plugin: SimpleController
-              class: SimpleControllerItem
-              data: 
-                isImmediateMode: true
-                controller: "controller/RobotController"
-                reloading: true
-                inputLinkPositions: false
         - 
-          id: 12
+          id: 3
           name: "Floor"
           plugin: Body
           class: BodyItem
@@ -91,7 +71,7 @@ items:
             selfCollisionDetection: false
             isEditable: true
         - 
-          id: 13
+          id: 4
           name: "AISTSimulator"
           plugin: Body
           class: AISTSimulatorItem
@@ -128,9 +108,9 @@ views:
     class: ItemTreeView
     mounted: true
     state: 
-      selected: [ 8, 13 ]
-      checked: [ 9, 12 ]
-      expanded: [ 8, 9, [ 10, "motion" ] ]
+      selected: [ 1 ]
+      checked: [ 2 ]
+      expanded: [ 1, 2 ]
   - 
     id: 2
     plugin: Base
@@ -142,9 +122,9 @@ views:
     class: SceneView
     mounted: true
     state: 
-      editMode: true
+      editMode: false
       viewpointControlMode: thirdPerson
-      collisionLines: true
+      collisionLines: false
       polygonMode: fill
       defaultHeadLight: true
       defaultHeadLightIntensity: 0.75
@@ -172,9 +152,9 @@ views:
       useBufferForPicking: true
       camera: 
         current: Perspective
-        eye: [ 3.9230532, 0.00317236382, 0.960286253 ]
-        direction: [ -0.998925023, 0.0463357414, -0.0013410164 ]
-        up: [ -0.00133957604, 6.21370454e-05, 0.999999101 ]
+        eye: [ 4, 2, 1.5 ]
+        direction: [ -0.888888889, -0.444444444, -0.111111111 ]
+        up: [ -0.0993807989, -0.0496903995, 0.99380799 ]
         fieldOfView: 0.6978
         near: 0.01
         far: 100
@@ -204,7 +184,7 @@ views:
       spinBox: true
       slider: true
       labelOnLeft: true
-      currentBodyItem: 9
+      currentBodyItem: 2
   - 
     id: 6
     plugin: Body
@@ -212,36 +192,20 @@ views:
     mounted: true
     state: 
       listingMode: "Link List"
-      currentBodyItem: 9
+      currentBodyItem: 2
   - 
     id: 7
-    name: "Pose Roll"
-    plugin: PoseSeq
-    class: PoseRollView
-    mounted: true
-    state: 
-      currentPoseSeqItem: 10
-      defaultTransitionTime: 0
-      updateAll: true
-      autoUpdate: false
-      timeSync: true
-      listingMode: "Part Tree"
-      timeLength: 10
-      showLipSync: false
-      gridInterval: 1
-  - 
-    id: 8
     plugin: Python
     class: PythonConsoleView
     mounted: true
 toolbars: 
   "TimeBar": 
     minTime: 0
-    maxTime: 61.89
+    maxTime: 30
     frameRate: 100
     playbackFrameRate: 50
     idleLoopDrivenMode: false
-    currentTime: 29.44
+    currentTime: 26.88
     speedScale: 1
     syncToOngoingUpdates: true
     autoExpansion: true
@@ -249,17 +213,17 @@ toolbars:
     mode: AUTO
     enablePositionDragger: true
     penetrationBlock: false
-    collisionLinkHighlight: true
+    collisionLinkHighlight: false
     snapDistance: 0.025
     penetrationBlockDepth: 0.0005
     lazyCollisionDetectionMode: true
   "BodyBar": 
-    current: 9
+    current: 2
   "LeggedBodyBar": 
     stanceWidth: 0.15
   "BodyMotionGenerationBar": 
-    balancer: true
-    autoGeneration: true
+    balancer: false
+    autoGeneration: false
     timeScaleRatio: 1
     preInitialDuration: 1
     postFinalDuration: 1
@@ -295,12 +259,7 @@ Body:
   "EditableSceneBody": 
     editableSceneBodies: 
       - 
-        bodyItem: 9
-        showCenterOfMass: false
-        showPpcom: false
-        showZmp: true
-      - 
-        bodyItem: 12
+        bodyItem: 2
         showCenterOfMass: false
         showPpcom: false
         showZmp: false
