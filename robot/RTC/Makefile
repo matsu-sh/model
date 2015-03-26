@@ -12,11 +12,14 @@ INSTALL = cp -p
 
 all: $(TARGET)
 
+RobotControllerRTC.so : RobotControllerRTC.cpp
+	$(CC) $(CFLAGS) -o $@ RobotControllerRTC.cpp $(LDFLAGS)
+
 RobotTorqueControllerRTC.so : RobotTorqueControllerRTC.cpp
 	$(CC) $(CFLAGS) -o $@ RobotTorqueControllerRTC.cpp $(LDFLAGS)
 
-RobotControllerRTC.so : RobotControllerRTC.cpp
-	$(CC) $(CFLAGS) -o $@ RobotControllerRTC.cpp $(LDFLAGS)
+RobotSensorsControllerRTC.so : RobotSensorsControllerRTC.cpp
+	$(CC) $(CFLAGS) -o $@ RobotSensorsControllerRTC.cpp $(LDFLAGS)
 
 clean:
 	rm -rf $(OBJS) $(TARGET)
