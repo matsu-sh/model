@@ -15,15 +15,16 @@ using namespace cnoid;
 namespace {
 
 static const double pgain[] = {
-    8000.0, 8000.0, 8000.0, 8000.0, 8000.0, 8000.0,
-    3000.0, 3000.0, 3000.0, 3000.0, 3000.0, 3000.0,
-    8000.0, 8000.0, 8000.0,
-    8000.0, 8000.0, 8000.0,
-    3000.0, 3000.0, 3000.0, 3000.0, 3000.0,
-    3000.0, 3000.0, 3000.0, 3000.0, 3000.0,
-    8000.0, 8000.0, 8000.0,
-    3000.0, 3000.0, 3000.0, 3000.0, 3000.0,
-    3000.0, 3000.0, 3000.0, 3000.0, 3000.0,
+    15.0, 5000.0, 5000.0, 0.15, 5000.0, 0.15,
+    15.0, 5000.0, 5000.0, 0.15, 50.0, 500.0,
+    150.0, 15.0, 5000.0,
+    5000.0, 5000.0, 5000.0,
+    5000.0, 5000.0, 5000.0, 5000.0, 5000.0,
+    5000.0, 5000.0, 5000.0, 5000.0, 5000.0,
+    5000.0, 5000.0, 5000.0,
+    5000.0, 5000.0, 5000.0, 5000.0, 5000.0,
+    5000.0, 5000.0, 5000.0, 5000.0, 5000.0,
+    5000.0, 5000.0, 5000.0,
     };
 
 static const double dgain[] = {
@@ -36,6 +37,7 @@ static const double dgain[] = {
     100.0, 100.0, 100.0,
     100.0, 100.0, 100.0, 100.0, 100.0,
     100.0, 100.0, 100.0, 100.0, 100.0,
+    100.0, 100.0, 100.0,
     };
 
 
@@ -124,12 +126,13 @@ RTC::ReturnCode_t RobotTorqueControllerRTC::onDeactivated(RTC::UniqueId ec_id)
 
 RTC::ReturnCode_t RobotTorqueControllerRTC::onExecute(RTC::UniqueId ec_id)
 {
-    if(currentFrame > qseq->numFrames()){
-            return RTC::RTC_OK;
-    }
-
     if(m_angleIn.isNew()){
             m_angleIn.read();
+    }
+
+    if(currentFrame > qseq->numFrames()){
+            m_torqueOut.write();
+            return RTC::RTC_OK;
     }
 
     MultiValueSeq::Frame frame = qseq->frame(currentFrame++);
@@ -139,9 +142,10 @@ RTC::ReturnCode_t RobotTorqueControllerRTC::onExecute(RTC::UniqueId ec_id)
             double q = m_angle.data[i];
             double dq_ref = (q_ref - oldFrame[i]) / timeStep_;
             double dq = (q - q0[i]) / timeStep_;
-            m_torque.data[i] = (q_ref - q) * pgain[i] + (dq_ref - dq) * dgain[i];
+            m_torque.data[i] = (q_ref - q) * pgain[i]/100.0 + (dq_ref - dq) * dgain[i]/100.0;
             q0[i] = q;
 
+            cout << "i = " << i << " ";
             cout << "q_ref = " << frame[i] << " ";
             cout << "q = " << q << " ";
             cout << "dq_ref = " << dq_ref << " ";

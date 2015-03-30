@@ -1,11 +1,11 @@
 items: 
-  id: 7
+  id: 0
   name: "Root"
   plugin: Base
   class: RootItem
   children: 
     - 
-      id: 8
+      id: 1
       name: "World"
       plugin: Body
       class: WorldItem
@@ -14,18 +14,18 @@ items:
         collisionDetector: AISTCollisionDetector
       children: 
         - 
-          id: 9
+          id: 2
           name: "JVRC"
           plugin: Body
           class: BodyItem
           data: 
             modelFile: "robot.yaml"
             currentBaseLink: "R_ANKLE_P"
-            rootPosition: [ -2.61928626e-07, -9.54683788e-09, 0.853636039 ]
+            rootPosition: [ -2.6235965e-07, -8.43315543e-09, 0.853636039 ]
             rootAttitude: [ 
-              1, -2.16255225e-06, -6.17603119e-08, 
-              2.16255225e-06, 1, 1.62237354e-08, 
-              6.17602768e-08, -1.62238689e-08, 1 ]
+              1, -2.16236882e-06, -6.22523914e-08, 
+              2.16236882e-06, 1, 1.7494802e-08, 
+              6.22523535e-08, -1.74949366e-08, 1 ]
             jointPositions: [ 
                0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000, 
                0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000, 
@@ -49,7 +49,7 @@ items:
             isEditable: true
           children: 
             - 
-              id: 10
+              id: 3
               name: "SampleMotion"
               plugin: PoseSeq
               class: PoseSeqItem
@@ -58,17 +58,17 @@ items:
                 format: POSE-SEQ-YAML
                 barLength: 1
             - 
-              id: 11
+              id: 4
               name: "SimpleController"
               plugin: SimpleController
               class: SimpleControllerItem
               data: 
                 isImmediateMode: true
-                controller: "controller/RobotController"
+                controller: "RobotController"
                 reloading: true
                 inputLinkPositions: false
         - 
-          id: 12
+          id: 5
           name: "Floor"
           plugin: Body
           class: BodyItem
@@ -91,7 +91,7 @@ items:
             selfCollisionDetection: false
             isEditable: true
         - 
-          id: 13
+          id: 6
           name: "AISTSimulator"
           plugin: Body
           class: AISTSimulatorItem
@@ -119,25 +119,31 @@ items:
 views: 
   - 
     id: 0
+    name: "CameraImage"
     plugin: Base
-    class: ItemPropertyView
+    class: ImageView
     mounted: true
   - 
     id: 1
     plugin: Base
+    class: ItemPropertyView
+    mounted: true
+  - 
+    id: 2
+    plugin: Base
     class: ItemTreeView
     mounted: true
     state: 
-      selected: [ 8, 13 ]
-      checked: [ 9, 12 ]
-      expanded: [ 8, 9, [ 10, "motion" ] ]
+      selected: [ 4 ]
+      checked: [ 2, 5 ]
+      expanded: [ 1, 2, [ 3, "motion" ] ]
   - 
-    id: 2
+    id: 3
     plugin: Base
     class: MessageView
     mounted: true
   - 
-    id: 3
+    id: 4
     plugin: Base
     class: SceneView
     mounted: true
@@ -174,7 +180,7 @@ views:
         current: Perspective
         eye: [ 3.9230532, 0.00317236382, 0.960286253 ]
         direction: [ -0.998925023, 0.0463357414, -0.0013410164 ]
-        up: [ -0.00133957604, 6.21370454e-05, 0.999999101 ]
+        up: [ -0.00133957604, 6.21370455e-05, 0.999999101 ]
         fieldOfView: 0.6978
         near: 0.01
         far: 100
@@ -185,14 +191,14 @@ views:
       yzgridColor: [ 0.899999976, 0.899999976, 0.899999976, 1 ]
       dedicatedItemTreeViewChecks: false
   - 
-    id: 4
+    id: 5
     plugin: Body
     class: BodyLinkView
     mounted: true
     state: 
       showRotationMatrix: false
   - 
-    id: 5
+    id: 6
     plugin: Body
     class: JointSliderView
     mounted: true
@@ -204,23 +210,23 @@ views:
       spinBox: true
       slider: true
       labelOnLeft: true
-      currentBodyItem: 9
+      currentBodyItem: 2
   - 
-    id: 6
+    id: 7
     plugin: Body
     class: LinkSelectionView
     mounted: true
     state: 
       listingMode: "Link List"
-      currentBodyItem: 9
+      currentBodyItem: 2
   - 
-    id: 7
+    id: 8
     name: "Pose Roll"
     plugin: PoseSeq
     class: PoseRollView
     mounted: true
     state: 
-      currentPoseSeqItem: 10
+      currentPoseSeqItem: 3
       defaultTransitionTime: 0
       updateAll: true
       autoUpdate: false
@@ -230,7 +236,7 @@ views:
       showLipSync: false
       gridInterval: 1
   - 
-    id: 8
+    id: 9
     plugin: Python
     class: PythonConsoleView
     mounted: true
@@ -241,7 +247,7 @@ toolbars:
     frameRate: 100
     playbackFrameRate: 50
     idleLoopDrivenMode: false
-    currentTime: 29.44
+    currentTime: 28.99
     speedScale: 1
     syncToOngoingUpdates: true
     autoExpansion: true
@@ -254,7 +260,7 @@ toolbars:
     penetrationBlockDepth: 0.0005
     lazyCollisionDetectionMode: true
   "BodyBar": 
-    current: 9
+    current: 2
   "LeggedBodyBar": 
     stanceWidth: 0.15
   "BodyMotionGenerationBar": 
@@ -295,12 +301,12 @@ Body:
   "EditableSceneBody": 
     editableSceneBodies: 
       - 
-        bodyItem: 9
+        bodyItem: 2
         showCenterOfMass: false
         showPpcom: false
         showZmp: true
       - 
-        bodyItem: 12
+        bodyItem: 5
         showCenterOfMass: false
         showPpcom: false
         showZmp: false

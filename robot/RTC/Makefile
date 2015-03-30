@@ -4,6 +4,7 @@ CFLAGS = -Wall
 LIBS   =
 SRCS   = $(wildcard *.cpp)
 MOTIONS = $(wildcard *.yaml)
+CONFS = $(wildcard *.conf)
 TARGET = $(SRCS:.cpp=.so)
 DESTDIR = /usr/local
 INSTALL = cp -p
@@ -27,3 +28,4 @@ clean:
 install:
 	$(INSTALL) $(TARGET) $(DESTDIR)/lib/choreonoid-1.5/rtc
 	$(INSTALL) $(MOTIONS) $(DESTDIR)/share/choreonoid-1.5/motion
+	$(INSTALL) $(CONFS) $(DESTDIR)/lib/choreonoid-1.5/rtc

@@ -21,17 +21,17 @@ items:
           data: 
             modelFile: "../robot.yaml"
             currentBaseLink: "PELVIS"
-            rootPosition: [ 0.0413963414, 0.000181616704, 0.0940333385 ]
+            rootPosition: [ 0.338632652, 0.00568036222, 0.10469109 ]
             rootAttitude: [ 
-              0.565424005, -0.0125139822, -0.824705459, 
-              0.0058130155, 0.999920524, -0.0111872294, 
-              0.824779912, 0.00153150244, 0.565451812 ]
+              0.37355994, -0.00783800839, -0.927572928, 
+              0.00481441621, 0.999967215, -0.00651083942, 
+              0.927593549, -0.00203353335, 0.373585428 ]
             jointPositions: [ 
-               2.491536,  0.014273, -0.003464, -3.041826,  0.504564,  1.360445,  2.490455,  0.031264, -0.002901, 
-              -3.045891, -0.501021,  1.310491,  0.017990,  2.878274, -0.003599,  0.019525,  0.017707,  2.996885, 
-              -0.520872, -0.761651,  1.508038, -2.182746,  0.264640, -2.990384,  0.465690,  3.099607, -0.005098, 
-               2.411791,  0.686546,  2.999907, -1.986456, -0.492282,  0.674486, -1.506559, -2.242052, -1.251595, 
-               2.269450, -2.690822, -2.487268,  1.217938, -2.993205,  0.327215, -1.484359, -0.531348 ]
+               2.671176,  0.043218, -0.082254, -2.781358,  1.650110,  4.009313,  2.662097, -0.117912,  0.015355, 
+              -2.783510, -1.288077,  3.987309,  0.020762,  2.989342, -0.093912,  0.360984,  0.476271, -1.124486, 
+              -0.384458, -0.043988,  1.525957, -1.422346,  0.795123, -6.516905, -0.968134, -2.813925,  20.362354, 
+              -2.948814,  9.408074, -2.928731,  3.133735, -0.376361,  0.201797, -1.442311, -1.978072, -0.906992, 
+               6.099937,  5.782069, -89.354790, -135.684600, -120.762239,  15.225463,  0.041955, -22.389421 ]
             initialRootPosition: [ 0, 0, 0.854 ]
             initialRootAttitude: [ 
               1, 0, 0, 
@@ -55,9 +55,9 @@ items:
               class: BodyRTCItem
               data: 
                 isImmediateMode: true
-                moduleName: "RobotControllerRTC"
-                confFileName: ""
-                configurationMode: Create Default Port
+                moduleName: "RobotSensorsControllerRTC"
+                confFileName: "RobotSensorsJVRC.conf"
+                configurationMode: Use Configuration File
                 AutoConnect: true
                 InstanceName: JVRC
                 bodyPeriodicRate: 0
@@ -110,6 +110,27 @@ items:
             contactCorrectionVelocityRatio: 1
             kinematicWalking: false
             2Dmode: false
+          children: 
+            - 
+              id: 6
+              name: "GLVisionSimulator"
+              plugin: Body
+              class: GLVisionSimulatorItem
+              data: 
+                enabled: true
+                targetBodies: [ JVRC ]
+                targetSensors: [ ranger ]
+                maxFrameRate: 1000
+                maxLatency: 1
+                recordVisionData: false
+                useThread: true
+                useThreadsForSensors: true
+                bestEffort: false
+                allSceneObjects: false
+                rangeSensorPrecisionRatio: 2
+                depthError: 0
+                enableHeadLight: true
+                enableAdditionalLights: true
 views: 
   - 
     id: 0
@@ -128,9 +149,9 @@ views:
     class: ItemTreeView
     mounted: true
     state: 
-      selected: [ 3 ]
+      selected: [ 6 ]
       checked: [ 2 ]
-      expanded: [ 1, 2 ]
+      expanded: [ 1, 2, 3, 5 ]
   - 
     id: 3
     plugin: Base
@@ -221,11 +242,11 @@ views:
 toolbars: 
   "TimeBar": 
     minTime: 0
-    maxTime: 30
+    maxTime: 31.12
     frameRate: 100
     playbackFrameRate: 50
     idleLoopDrivenMode: false
-    currentTime: 26.88
+    currentTime: 31.12
     speedScale: 1
     syncToOngoingUpdates: true
     autoExpansion: true

@@ -1,11 +1,11 @@
 items: 
-  id: 28
+  id: 0
   name: "Root"
   plugin: Base
   class: RootItem
   children: 
     - 
-      id: 29
+      id: 1
       name: "World"
       plugin: Body
       class: WorldItem
@@ -14,7 +14,7 @@ items:
         collisionDetector: AISTCollisionDetector
       children: 
         - 
-          id: 30
+          id: 2
           name: "JVRC"
           plugin: Body
           class: BodyItem
@@ -43,13 +43,13 @@ items:
                0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000, 
                0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000, 
                0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000 ]
-            zmp: [ 3.97163325e-316, 2.00590652e-321, 3.97163484e-316 ]
+            zmp: [ 6.95318093e-310, 6.95318093e-310, 3.62463712e-316 ]
             collisionDetection: true
             selfCollisionDetection: false
             isEditable: true
           children: 
             - 
-              id: 31
+              id: 3
               name: "BodyRTC"
               plugin: OpenRTM
               class: BodyRTCItem
@@ -62,8 +62,8 @@ items:
                 InstanceName: JVRC
                 bodyPeriodicRate: 0
             - 
-              id: 32
-              name: "SampleMotion"
+              id: 4
+              name: "PoseSeq"
               plugin: PoseSeq
               class: PoseSeqItem
               data: 
@@ -71,7 +71,7 @@ items:
                 format: POSE-SEQ-YAML
                 barLength: 1
         - 
-          id: 33
+          id: 5
           name: "Floor"
           plugin: Body
           class: BodyItem
@@ -94,7 +94,7 @@ items:
             selfCollisionDetection: false
             isEditable: true
         - 
-          id: 34
+          id: 6
           name: "AISTSimulator"
           plugin: Body
           class: AISTSimulatorItem
@@ -137,9 +137,9 @@ views:
     class: ItemTreeView
     mounted: true
     state: 
-      selected: [ [ 32, "motion" ] ]
-      checked: [ 30, 33 ]
-      expanded: [ 29, 30, 31, 32, [ 32, "motion" ] ]
+      selected: [ 4 ]
+      checked: [ 2 ]
+      expanded: [ 1, 2, 3, 4 ]
   - 
     id: 3
     plugin: Base
@@ -151,7 +151,7 @@ views:
     class: SceneView
     mounted: true
     state: 
-      editMode: true
+      editMode: false
       viewpointControlMode: thirdPerson
       collisionLines: false
       polygonMode: fill
@@ -181,9 +181,9 @@ views:
       useBufferForPicking: true
       camera: 
         current: Perspective
-        eye: [ 4.56351343, 0.153609331, 1.18353259 ]
-        direction: [ -0.998580038, -0.0336125255, -0.0413292411 ]
-        up: [ -0.0413058476, -0.00139036813, 0.999145582 ]
+        eye: [ 2.81880332, 1.11653675, 0.696194198 ]
+        direction: [ -0.973810098, -0.221495619, -0.0513184637 ]
+        up: [ -0.0500403744, -0.0113818123, 0.99868234 ]
         fieldOfView: 0.6978
         near: 0.01
         far: 100
@@ -213,7 +213,7 @@ views:
       spinBox: true
       slider: true
       labelOnLeft: true
-      currentBodyItem: 30
+      currentBodyItem: 2
   - 
     id: 7
     plugin: Body
@@ -221,7 +221,7 @@ views:
     mounted: true
     state: 
       listingMode: "Link List"
-      currentBodyItem: 30
+      currentBodyItem: 2
   - 
     id: 8
     name: "Pose Roll"
@@ -229,7 +229,7 @@ views:
     class: PoseRollView
     mounted: true
     state: 
-      currentPoseSeqItem: 32
+      currentPoseSeqItem: 4
       defaultTransitionTime: 0
       updateAll: true
       autoUpdate: false
@@ -237,7 +237,7 @@ views:
       listingMode: "Part Tree"
       bodyItems: 
         - 
-          id: 30
+          id: 2
           expandedParts: [ "Whole Body" ]
       timeLength: 10
       showLipSync: false
@@ -254,7 +254,7 @@ toolbars:
     frameRate: 100
     playbackFrameRate: 50
     idleLoopDrivenMode: false
-    currentTime: 0
+    currentTime: 4
     speedScale: 1
     syncToOngoingUpdates: true
     autoExpansion: true
@@ -267,11 +267,11 @@ toolbars:
     penetrationBlockDepth: 0.0005
     lazyCollisionDetectionMode: true
   "BodyBar": 
-    current: 30
+    current: 2
   "LeggedBodyBar": 
     stanceWidth: 0.15
   "BodyMotionGenerationBar": 
-    balancer: true
+    balancer: false
     autoGeneration: true
     timeScaleRatio: 1
     preInitialDuration: 1
@@ -308,12 +308,12 @@ Body:
   "EditableSceneBody": 
     editableSceneBodies: 
       - 
-        bodyItem: 30
+        bodyItem: 2
         showCenterOfMass: false
         showPpcom: false
         showZmp: true
       - 
-        bodyItem: 33
+        bodyItem: 5
         showCenterOfMass: false
         showPpcom: false
         showZmp: false
