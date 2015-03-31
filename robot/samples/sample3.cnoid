@@ -43,7 +43,7 @@ items:
                0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000, 
                0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000, 
                0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000 ]
-            zmp: [ 6.95327992e-310, 6.95327992e-310, 2.91600943e-316 ]
+            zmp: [ 3.17700811e-316, 7.40802029e-320, 3.17700969e-316 ]
             collisionDetection: true
             selfCollisionDetection: false
             isEditable: true
@@ -239,7 +239,7 @@ views:
         - 
           id: 2
           expandedParts: [ "Whole Body" ]
-      timeLength: 10
+      timeLength: 15
       showLipSync: false
       gridInterval: 1
   - 
@@ -254,7 +254,7 @@ toolbars:
     frameRate: 1000
     playbackFrameRate: 50
     idleLoopDrivenMode: false
-    currentTime: 0
+    currentTime: 14.383
     speedScale: 1
     syncToOngoingUpdates: true
     autoExpansion: true
