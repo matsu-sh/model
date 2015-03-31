@@ -43,7 +43,7 @@ items:
                0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000, 
                0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000, 
                0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000,  0.000000 ]
-            zmp: [ 6.95318093e-310, 6.95318093e-310, 3.62463712e-316 ]
+            zmp: [ 6.95327992e-310, 6.95327992e-310, 2.91600943e-316 ]
             collisionDetection: true
             selfCollisionDetection: false
             isEditable: true
@@ -137,9 +137,9 @@ views:
     class: ItemTreeView
     mounted: true
     state: 
-      selected: [ 4 ]
+      selected: [ [ 4, "motion" ] ]
       checked: [ 2 ]
-      expanded: [ 1, 2, 3, 4 ]
+      expanded: [ 1, 2, 3, 4, [ 4, "motion" ] ]
   - 
     id: 3
     plugin: Base
@@ -183,7 +183,7 @@ views:
         current: Perspective
         eye: [ 2.81880332, 1.11653675, 0.696194198 ]
         direction: [ -0.973810098, -0.221495619, -0.0513184637 ]
-        up: [ -0.0500403744, -0.0113818123, 0.99868234 ]
+        up: [ -0.0500403743, -0.0113818123, 0.99868234 ]
         fieldOfView: 0.6978
         near: 0.01
         far: 100
@@ -251,10 +251,10 @@ toolbars:
   "TimeBar": 
     minTime: 0
     maxTime: 30
-    frameRate: 100
+    frameRate: 1000
     playbackFrameRate: 50
     idleLoopDrivenMode: false
-    currentTime: 4
+    currentTime: 0
     speedScale: 1
     syncToOngoingUpdates: true
     autoExpansion: true
